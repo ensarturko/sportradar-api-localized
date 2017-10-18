@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace Oregon.Data.Model
 {
     public class TeamProfileModel
     {
+        [Key]
+        public int Id { get; set; }
         public DateTime Generated_at { get; set; }
         public string Schema { get; set; }
         public Team Team { get; set; }

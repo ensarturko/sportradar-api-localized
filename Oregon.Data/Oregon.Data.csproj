@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\SportContext.cs" />
+    <Compile Include="Migrations\201710181057561_Create-18-10-17.cs" />
+    <Compile Include="Migrations\201710181057561_Create-18-10-17.Designer.cs">
+      <DependentUpon>201710181057561_Create-18-10-17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IBaseXmlModel.cs" />
     <Compile Include="Model\TeamProfileModel.cs" />
     <Compile Include="Model\TeamProfile\Category.cs" />
@@ -70,6 +75,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710181057561_Create-18-10-17.resx">
+      <DependentUpon>201710181057561_Create-18-10-17.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
