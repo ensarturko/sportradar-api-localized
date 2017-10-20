@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oregon.Core", "Oregon.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oregon.Service", "Oregon.Service\Oregon.Service.csproj", "{943D1868-8271-437B-BCAE-0B5984A78E3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oregon.Console", "Oregon.Console\Oregon.Console.csproj", "{ADF9807E-97DA-4D69-8D59-1B65C40E30D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{943D1868-8271-437B-BCAE-0B5984A78E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{943D1868-8271-437B-BCAE-0B5984A78E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{943D1868-8271-437B-BCAE-0B5984A78E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF9807E-97DA-4D69-8D59-1B65C40E30D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF9807E-97DA-4D69-8D59-1B65C40E30D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF9807E-97DA-4D69-8D59-1B65C40E30D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF9807E-97DA-4D69-8D59-1B65C40E30D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

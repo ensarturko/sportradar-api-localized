@@ -10,7 +10,7 @@ namespace Oregon.Data.Model
     interface IBaseXmlModel
     {
         [XmlAttribute("id")]
-        int Id { get; set; }
+        string Id { get; set; }
 
         [XmlAttribute("name")]
         string Name { get; set; }

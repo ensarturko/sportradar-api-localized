@@ -11,6 +11,5 @@ namespace Oregon.Data.DataContext
     public class SportContext : DbContext
     {
         public DbSet<TeamProfileModel> TeamProfiles { get; set; }
-
     } 
 }

@@ -11,8 +11,6 @@ namespace Oregon.Data.Infrastructure
     {
         IEnumerable<T> GetAll();
 
-        T GetById(int id);
-
         T Get(Expression<Func<T, bool>> expression);
 
         IQueryable<T> GetMany(Expression<Func<T, bool>> expression);
@@ -20,8 +18,6 @@ namespace Oregon.Data.Infrastructure
         void Insert(T obj);
 
         void Update(T obj);
-
-        void Delete(int id);
 
         int Count();
 

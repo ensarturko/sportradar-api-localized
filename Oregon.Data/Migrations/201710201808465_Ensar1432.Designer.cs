@@ -7,13 +7,13 @@ namespace Oregon.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Create181017 : IMigrationMetadata
+    public sealed partial class Ensar1432 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Create181017));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Ensar1432));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710181057561_Create-18-10-17"; }
+            get { return "201710201808465_Ensar1432"; }
         }
         
         string IMigrationMetadata.Source

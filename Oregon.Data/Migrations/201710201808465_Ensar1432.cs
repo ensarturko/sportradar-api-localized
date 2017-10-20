@@ -3,7 +3,7 @@ namespace Oregon.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Create181017 : DbMigration
+    public partial class Ensar1432 : DbMigration
     {
         public override void Up()
         {
@@ -11,14 +11,15 @@ namespace Oregon.Data.Migrations
                 "dbo.TeamProfileModels",
                 c => new
                     {
+                        Id = c.Int(nullable: false),
                         Generated_at = c.DateTime(nullable: false),
                         Schema = c.String(),
-                        Manager_Id = c.Int(),
-                        Statistics_Id = c.Int(),
-                        Team_Id = c.Int(),
-                        Venue_Id = c.Int(),
+                        Manager_Id = c.String(maxLength: 128),
+                        Statistics_Id = c.String(maxLength: 128),
+                        Team_Id = c.String(maxLength: 128),
+                        Venue_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Generated_at)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Managers", t => t.Manager_Id)
                 .ForeignKey("dbo.Statistics", t => t.Statistics_Id)
                 .ForeignKey("dbo.Teams", t => t.Team_Id)
@@ -32,7 +33,8 @@ namespace Oregon.Data.Migrations
                 "dbo.Jerseys",
                 c => new
                     {
-                        Type = c.String(nullable: false, maxLength: 128),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Type = c.String(),
                         Base = c.String(),
                         Sleeve = c.String(),
                         Number = c.String(),
@@ -43,17 +45,17 @@ namespace Oregon.Data.Migrations
                         Split = c.Boolean(nullable: false),
                         Shirt_type = c.String(),
                         Sleeve_detail = c.String(),
-                        TeamProfileModel_Generated_at = c.DateTime(),
+                        TeamProfileModel_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Type)
-                .ForeignKey("dbo.TeamProfileModels", t => t.TeamProfileModel_Generated_at)
-                .Index(t => t.TeamProfileModel_Generated_at);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.TeamProfileModels", t => t.TeamProfileModel_Id)
+                .Index(t => t.TeamProfileModel_Id);
             
             CreateTable(
                 "dbo.Managers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Nationality = c.String(),
                         Country_code = c.String(),
@@ -64,7 +66,7 @@ namespace Oregon.Data.Migrations
                 "dbo.Players",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         type = c.String(),
                         Date_of_birth = c.String(),
@@ -74,17 +76,17 @@ namespace Oregon.Data.Migrations
                         Weight = c.Int(nullable: false),
                         Jersey_number = c.Int(nullable: false),
                         Preferred_foot = c.String(),
-                        TeamProfileModel_Generated_at = c.DateTime(),
+                        TeamProfileModel_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TeamProfileModels", t => t.TeamProfileModel_Generated_at)
-                .Index(t => t.TeamProfileModel_Generated_at);
+                .ForeignKey("dbo.TeamProfileModels", t => t.TeamProfileModel_Id)
+                .Index(t => t.TeamProfileModel_Id);
             
             CreateTable(
                 "dbo.Statistics",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -93,59 +95,82 @@ namespace Oregon.Data.Migrations
                 "dbo.Seasons",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
-                        Statistics_Matches_played = c.Int(nullable: false),
-                        Statistics_Matches_won = c.Int(nullable: false),
-                        Statistics_Matches_drawn = c.Int(nullable: false),
-                        Statistics_Matches_lost = c.Int(nullable: false),
-                        Statistics_Goals_scored = c.Int(nullable: false),
-                        Statistics_Goals_conceded = c.Int(nullable: false),
-                        Statistics_Group_position = c.Int(nullable: false),
-                        Statistics_Cup_rank = c.Int(),
-                        Statistics_Group_name = c.String(),
-                        Form_Total = c.String(),
-                        Form_Home = c.String(),
-                        Form_Away = c.String(),
-                        Tournament_Id = c.Int(),
-                        Statistics_Id = c.Int(),
+                        Form_Id = c.String(maxLength: 128),
+                        Statistics_Id = c.String(maxLength: 128),
+                        Tournament_Id = c.String(maxLength: 128),
+                        Statistics_Id1 = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Forms", t => t.Form_Id)
+                .ForeignKey("dbo.Statistics2", t => t.Statistics_Id)
                 .ForeignKey("dbo.Tournaments", t => t.Tournament_Id)
-                .ForeignKey("dbo.Statistics", t => t.Statistics_Id)
+                .ForeignKey("dbo.Statistics", t => t.Statistics_Id1)
+                .Index(t => t.Form_Id)
+                .Index(t => t.Statistics_Id)
                 .Index(t => t.Tournament_Id)
-                .Index(t => t.Statistics_Id);
+                .Index(t => t.Statistics_Id1);
+            
+            CreateTable(
+                "dbo.Forms",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Total = c.String(),
+                        Home = c.String(),
+                        Away = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Statistics2",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Matches_played = c.Int(nullable: false),
+                        Matches_won = c.Int(nullable: false),
+                        Matches_drawn = c.Int(nullable: false),
+                        Matches_lost = c.Int(nullable: false),
+                        Goals_scored = c.Int(nullable: false),
+                        Goals_conceded = c.Int(nullable: false),
+                        Group_position = c.Int(nullable: false),
+                        Cup_rank = c.Int(),
+                        Group_name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Tournaments",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
-                        Category_Id = c.Int(),
-                        Sport_Id = c.Int(),
+                        Category_Category2Id = c.Int(),
+                        Sport_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Category2", t => t.Category_Id)
+                .ForeignKey("dbo.Category2", t => t.Category_Category2Id)
                 .ForeignKey("dbo.Sport2", t => t.Sport_Id)
-                .Index(t => t.Category_Id)
+                .Index(t => t.Category_Category2Id)
                 .Index(t => t.Sport_Id);
             
             CreateTable(
                 "dbo.Category2",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Category2Id = c.Int(nullable: false),
+                        Id = c.String(),
                         Name = c.String(),
                         Country_code = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Category2Id);
             
             CreateTable(
                 "dbo.Sport2",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -154,13 +179,13 @@ namespace Oregon.Data.Migrations
                 "dbo.Teams",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Country = c.String(),
                         Country_code = c.String(),
                         Abbreviation = c.String(),
-                        Category_Id = c.Int(),
-                        Sport_Id = c.Int(),
+                        Category_Id = c.String(maxLength: 128),
+                        Sport_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id)
@@ -172,7 +197,7 @@ namespace Oregon.Data.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Country_code = c.String(),
                     })
@@ -182,7 +207,7 @@ namespace Oregon.Data.Migrations
                 "dbo.Sports",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -191,7 +216,7 @@ namespace Oregon.Data.Migrations
                 "dbo.Venues",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Capacity = c.Int(nullable: false),
                         City_name = c.String(),
@@ -210,21 +235,25 @@ namespace Oregon.Data.Migrations
             DropForeignKey("dbo.Teams", "Sport_Id", "dbo.Sports");
             DropForeignKey("dbo.Teams", "Category_Id", "dbo.Categories");
             DropForeignKey("dbo.TeamProfileModels", "Statistics_Id", "dbo.Statistics");
-            DropForeignKey("dbo.Seasons", "Statistics_Id", "dbo.Statistics");
+            DropForeignKey("dbo.Seasons", "Statistics_Id1", "dbo.Statistics");
             DropForeignKey("dbo.Seasons", "Tournament_Id", "dbo.Tournaments");
             DropForeignKey("dbo.Tournaments", "Sport_Id", "dbo.Sport2");
-            DropForeignKey("dbo.Tournaments", "Category_Id", "dbo.Category2");
-            DropForeignKey("dbo.Players", "TeamProfileModel_Generated_at", "dbo.TeamProfileModels");
+            DropForeignKey("dbo.Tournaments", "Category_Category2Id", "dbo.Category2");
+            DropForeignKey("dbo.Seasons", "Statistics_Id", "dbo.Statistics2");
+            DropForeignKey("dbo.Seasons", "Form_Id", "dbo.Forms");
+            DropForeignKey("dbo.Players", "TeamProfileModel_Id", "dbo.TeamProfileModels");
             DropForeignKey("dbo.TeamProfileModels", "Manager_Id", "dbo.Managers");
-            DropForeignKey("dbo.Jerseys", "TeamProfileModel_Generated_at", "dbo.TeamProfileModels");
+            DropForeignKey("dbo.Jerseys", "TeamProfileModel_Id", "dbo.TeamProfileModels");
             DropIndex("dbo.Teams", new[] { "Sport_Id" });
             DropIndex("dbo.Teams", new[] { "Category_Id" });
             DropIndex("dbo.Tournaments", new[] { "Sport_Id" });
-            DropIndex("dbo.Tournaments", new[] { "Category_Id" });
-            DropIndex("dbo.Seasons", new[] { "Statistics_Id" });
+            DropIndex("dbo.Tournaments", new[] { "Category_Category2Id" });
+            DropIndex("dbo.Seasons", new[] { "Statistics_Id1" });
             DropIndex("dbo.Seasons", new[] { "Tournament_Id" });
-            DropIndex("dbo.Players", new[] { "TeamProfileModel_Generated_at" });
-            DropIndex("dbo.Jerseys", new[] { "TeamProfileModel_Generated_at" });
+            DropIndex("dbo.Seasons", new[] { "Statistics_Id" });
+            DropIndex("dbo.Seasons", new[] { "Form_Id" });
+            DropIndex("dbo.Players", new[] { "TeamProfileModel_Id" });
+            DropIndex("dbo.Jerseys", new[] { "TeamProfileModel_Id" });
             DropIndex("dbo.TeamProfileModels", new[] { "Venue_Id" });
             DropIndex("dbo.TeamProfileModels", new[] { "Team_Id" });
             DropIndex("dbo.TeamProfileModels", new[] { "Statistics_Id" });
@@ -236,6 +265,8 @@ namespace Oregon.Data.Migrations
             DropTable("dbo.Sport2");
             DropTable("dbo.Category2");
             DropTable("dbo.Tournaments");
+            DropTable("dbo.Statistics2");
+            DropTable("dbo.Forms");
             DropTable("dbo.Seasons");
             DropTable("dbo.Statistics");
             DropTable("dbo.Players");

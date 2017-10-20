@@ -20,12 +20,7 @@ namespace Oregon.Core.Repository
             return _context.TeamProfiles.Select(x => x);
         }
 
-        public TeamProfileModel GetById(int id)
-        {
-            return _context.TeamProfiles.FirstOrDefault(x => x.Id == id);
-        }
-
-        public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
+      public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
         {
             return _context.TeamProfiles.FirstOrDefault(expression);
         }
@@ -44,15 +39,6 @@ namespace Oregon.Core.Repository
         public void Update(TeamProfileModel obj)
         {
             _context.TeamProfiles.AddOrUpdate(obj);
-        }
-
-        public void Delete(int id)
-        {
-            var element = GetById(id);
-            if (element != null)
-            {
-                _context.TeamProfiles.Remove(element);
-            }
         }
 
         public int Count()

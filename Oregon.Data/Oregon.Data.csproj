@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\SportContext.cs" />
-    <Compile Include="Migrations\201710181057561_Create-18-10-17.cs" />
-    <Compile Include="Migrations\201710181057561_Create-18-10-17.Designer.cs">
-      <DependentUpon>201710181057561_Create-18-10-17.cs</DependentUpon>
+    <Compile Include="Migrations\201710201808465_Ensar1432.cs" />
+    <Compile Include="Migrations\201710201808465_Ensar1432.Designer.cs">
+      <DependentUpon>201710201808465_Ensar1432.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IBaseXmlModel.cs" />
@@ -76,8 +77,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710181057561_Create-18-10-17.resx">
-      <DependentUpon>201710181057561_Create-18-10-17.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710201808465_Ensar1432.resx">
+      <DependentUpon>201710201808465_Ensar1432.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
