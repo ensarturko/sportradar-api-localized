@@ -5,14 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Oregon.Data.Model.TeamProfile
 {
-    public class Sport : IBaseXmlModel
+    public class Sport : SimpleViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Key]
-        public string Id { get; set; }
-        public string Name { get; set; }
+        [JsonProperty("id")]
+        public string SportId { get; set; }
     }
 }

@@ -23,7 +23,6 @@ namespace Oregon.Console
 
                 teamProfileRepository.Insert(objData);
                 teamProfileRepository.Save();
-
             }
 
         }

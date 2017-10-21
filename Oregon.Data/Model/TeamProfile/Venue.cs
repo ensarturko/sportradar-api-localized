@@ -5,15 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Oregon.Data.Model
 {
-    public class Venue : IBaseXmlModel
+    public class Venue : SimpleViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Key]
-        public string Id { get; set; }
-        public string Name { get; set; }
+        [JsonProperty("id")]
+        public string VenueId { get; set; }
         public int Capacity { get; set; }
         public string City_name { get; set; }
         public string Country_name { get; set; }

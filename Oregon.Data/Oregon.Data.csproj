@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,12 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\SportContext.cs" />
-    <Compile Include="Migrations\201710201808465_Ensar1432.cs" />
-    <Compile Include="Migrations\201710201808465_Ensar1432.Designer.cs">
-      <DependentUpon>201710201808465_Ensar1432.cs</DependentUpon>
+    <Compile Include="Migrations\201710211131442_21-10-17.cs" />
+    <Compile Include="Migrations\201710211131442_21-10-17.Designer.cs">
+      <DependentUpon>201710211131442_21-10-17.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\IBaseXmlModel.cs" />
+    <Compile Include="Model\SimpleViewModel.cs" />
     <Compile Include="Model\TeamProfileModel.cs" />
     <Compile Include="Model\TeamProfile\Category.cs" />
     <Compile Include="Model\TeamProfile\Category2.cs" />
@@ -77,8 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710201808465_Ensar1432.resx">
-      <DependentUpon>201710201808465_Ensar1432.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710211131442_21-10-17.resx">
+      <DependentUpon>201710211131442_21-10-17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

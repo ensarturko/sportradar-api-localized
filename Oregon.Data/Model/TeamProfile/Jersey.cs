@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Oregon.Data.Model.TeamProfile
 {
-    public class Jersey
+    public class Jersey : SimpleViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Id { get; set; }
         public string Type { get; set; }
         public string Base { get; set; }
         public string Sleeve { get; set; }

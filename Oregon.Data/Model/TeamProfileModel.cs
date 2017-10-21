@@ -9,12 +9,8 @@ using Oregon.Data.Model.TeamProfile;
 
 namespace Oregon.Data.Model
 {
-    public class TeamProfileModel
+    public class TeamProfileModel : SimpleViewModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
-
         public DateTime Generated_at { get; set; }
         public string Schema { get; set; }
         public Team Team { get; set; }

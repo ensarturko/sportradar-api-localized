@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace Oregon.Data.Model.TeamProfile
 {
-    public class Statistics : IBaseXmlModel
+    public class Statistics : SimpleViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Key]
-        public string Id { get; set; }
-        public string Name { get; set; }
         public List<Season> Seasons { get; set; }
     }
 }

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace Oregon.Data.Model.TeamProfile
+namespace Oregon.Data.Model
 {
-    public class Form
+    public class SimpleViewModel
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? Id { get; set; }
-        public string Total { get; set; }
-        public string Home { get; set; }
-        public string Away { get; set; }
+
+        public string Name { get; set; }
     }
 }

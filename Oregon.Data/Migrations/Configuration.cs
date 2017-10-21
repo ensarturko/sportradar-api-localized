@@ -17,15 +17,15 @@ namespace Oregon.Data.Migrations
 
         protected override void Seed(Oregon.Data.DataContext.SportContext context)
         {
-            context.TeamProfiles.AddOrUpdate(
-                c => c.Statistics.Seasons.FirstOrDefault().Tournament.Category.Category2Id,
-                    new Category2
-                    {
-                        Category2Id = 1
-                    }
-                );
+            //context.TeamProfiles.AddOrUpdate(
+            //    c => c.Statistics.Seasons.FirstOrDefault().Tournament.Category.Category2Id,
+            //        new Category2
+            //        {
+            //            Category2Id = 1
+            //        }
+            //    );
 
-            context.SaveChanges();
+            //context.SaveChanges();
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

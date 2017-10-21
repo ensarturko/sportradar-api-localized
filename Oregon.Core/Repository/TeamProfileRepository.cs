@@ -28,7 +28,6 @@ namespace Oregon.Core.Repository
         public IQueryable<TeamProfileModel> GetMany(Expression<Func<TeamProfileModel, bool>> expression)
         {
             return _context.TeamProfiles.Where(expression);
-
         }
 
         public void Insert(TeamProfileModel obj)
