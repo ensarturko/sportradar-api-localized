@@ -20,7 +20,7 @@ namespace Oregon.Core.Repository
             return _context.TeamProfiles.Select(x => x);
         }
 
-      public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
+        public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
         {
             return _context.TeamProfiles.FirstOrDefault(expression);
         }
@@ -33,6 +33,11 @@ namespace Oregon.Core.Repository
         public void Insert(TeamProfileModel obj)
         {
             _context.TeamProfiles.Add(obj);
+        }
+
+        public TeamProfileModel GetById(int id)
+        {
+            return _context.TeamProfiles.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(TeamProfileModel obj)

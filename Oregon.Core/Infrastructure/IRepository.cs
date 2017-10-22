@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Oregon.Data.Model;
 
 namespace Oregon.Data.Infrastructure
 {
@@ -18,6 +19,8 @@ namespace Oregon.Data.Infrastructure
         void Insert(T obj);
 
         void Update(T obj);
+
+        TeamProfileModel GetById(int id);
 
         int Count();
 

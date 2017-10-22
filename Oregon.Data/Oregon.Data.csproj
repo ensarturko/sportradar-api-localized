@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\SportContext.cs" />
-    <Compile Include="Migrations\201710211131442_21-10-17.cs" />
-    <Compile Include="Migrations\201710211131442_21-10-17.Designer.cs">
-      <DependentUpon>201710211131442_21-10-17.cs</DependentUpon>
+    <Compile Include="Migrations\201710221426182_22-1017.cs" />
+    <Compile Include="Migrations\201710221426182_22-1017.Designer.cs">
+      <DependentUpon>201710221426182_22-1017.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\SimpleViewModel.cs" />
@@ -80,8 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710211131442_21-10-17.resx">
-      <DependentUpon>201710211131442_21-10-17.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710221426182_22-1017.resx">
+      <DependentUpon>201710221426182_22-1017.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
