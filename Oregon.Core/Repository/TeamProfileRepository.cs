@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Oregon.Core.Infrastructure;
 using Oregon.Data.DataContext;
 using Oregon.Data.Model;
+using Oregon.Data.Model.TeamProfile;
 
 namespace Oregon.Core.Repository
 {
@@ -37,7 +38,7 @@ namespace Oregon.Core.Repository
 
         public TeamProfileModel GetById(int id)
         {
-            return _context.TeamProfiles.FirstOrDefault(x => x.Id == id);
+            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(TeamProfileModel obj)

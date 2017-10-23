@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Oregon.UI.Dependency;
+using Oregon.UI.App_Start;
 
 namespace Oregon.UI
 {
@@ -14,7 +14,7 @@ namespace Oregon.UI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            Bootstrapper.RunConfig(); 
+            DependencyManager.Initialize();
         }
     }
 }
