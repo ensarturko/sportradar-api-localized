@@ -1,7 +1,260 @@
-﻿
+﻿@using Oregon.Data.Model
+@using Oregon.Data.Model.TeamProfile
 @{
-    ViewBag.Title = "TeamProfile";
+    var result = ViewBag.Result;
+    var teamInfo = result.Team;
+    var venueInfo = result.Venue;
+    var managerInfo = result.Manager;
+    var statistics = result.Statistics;
 }
 
-<h2>TeamProfile</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Takım Bilgileri</title>
+    <style>
+        .tablestyle td {
+            border: 1px solid #000;
+            padding: 7px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <table>
+        <tr>
+            <td>
+                <label>Lig</label>
+                <select class="select2" id="sportId" name="sportId"></select>
+            </td>
+            <td>
+                <select id="uniqueTournamentId" name="uniqueTournamentId" style="width: 100%;"></select>
+            </td>
+            <td>
+                <select id="tournamentId" name="tournamentId" style="width: 100%;"></select>
+            </td>
+            <td>
+                <select id="teamId" name="teamId" style="width: 100%;">
+                    <option value="0">Takım Seçiniz</option>
 
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br /><br />
+
+
+    <div id="teamProfile">
+        <div style="display: inline-block; float: left; width: 250px;">
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                <tr>
+                    <td>Takım Bilgileri : </td>
+                </tr>
+                <tr>
+                    <td>Kısaltması:</td>
+                    <td>@teamInfo.Abbreviation</td>
+                </tr>
+                <tr>
+                    <td>Ülkesi:</td>
+                    <td>@teamInfo.Country</td>
+                </tr>
+                <tr>
+                    <td>Ülke Kodu:</td>
+                    <td> @teamInfo.Country_code</td>
+                </tr>
+                <tr>
+                    <td>Oregon Id:</td>
+                    <td> @teamInfo.Id</td>
+                </tr>
+                <tr>
+                    <td>İsim:</td>
+                    <td> @teamInfo.Name</td>
+                </tr>
+                <tr>
+                    <td>Sportradar Id:</td>
+                    <td> @teamInfo.TeamId</td>
+                </tr>
+                </tr>
+            </table>
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                    <tr>
+                        <td>Antrenör Bilgileri : </td>
+                    </tr>
+                    <tr>
+                        <td>Id:</td>
+                        <td>@managerInfo.ManagerId</td>
+                    </tr>
+                    <tr>
+                        <td>Köken:</td>
+                        <td>@managerInfo.Nationality</td>
+                    </tr>
+                    <tr>
+                        <td>Ülke Kodu:</td>
+                        <td> @managerInfo.Country_code</td>
+                    </tr>
+                </tr>
+            </table>
+            
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                <tr>
+                    <td>Stat Bilgileri : </td>
+                </tr>
+                <tr>
+                    <td>Id:</td>
+                    <td>@venueInfo.VenueId</td>
+                </tr>
+                <tr>
+                    <td>Kapasitesi:</td>
+                    <td>@venueInfo.Capacity</td>
+                </tr>
+                <tr>
+                    <td>Şehir Adı:</td>
+                    <td> @venueInfo.City_name</td>
+                </tr>
+                <tr>
+                    <td>Ülke Adı:</td>
+                    <td> @venueInfo.Country_name</td>
+                </tr>
+                <tr>
+                    <td>Harita Koordinatı:</td>
+                    <td> @venueInfo.Map_coordinates</td>
+                </tr>
+                <tr>
+                    <td>Ülke Kodu:</td>
+                    <td> @venueInfo.Country_code</td>
+                </tr>
+                </tr>
+            </table>
+            <table style="border:1px solid #000; padding:7px; float: left;">
+
+                <tr>
+                    <td>İstatistikler: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
+           
+            <table style="border:1px solid #000; padding:7px; float: left;">
+
+                <tr>
+                    <td>Formalar: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                    <td>Oyuncular: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
+
+</div>
+    </div>
+
+</body>
+
+</html>
+@*<script type="text/javascript">
+        $(function() {
+            $("#sportId")
+                .change(function() {
+                    window.location = getLocationUrl() + '?sportId=' + this.value;
+                });
+            $("#uniqueTournamentId")
+                .change(function() {
+
+                    var sportId = $("#sportId").val();
+
+                    window.location = getLocationUrl() + '?sportId=' + sportId + '&uniqueTournamentId=' + this.value;
+                });
+            $("#tournamentId")
+                .change(function() {
+
+                    var sportId = $("#sportId").val();
+                    var uniqueTournamentId = $("#uniqueTournamentId").val();
+                    window.location = getLocationUrl() +
+                        '?sportId=' +
+                        sportId +
+                        '&uniqueTournamentId=' +
+                        uniqueTournamentId +
+                        '&tournamentId=' +
+                        this.value;
+                });
+            $("#teamId")
+                .change(function() {
+                    var sportId = $("#sportId").val();
+                    var uniqueTournamentId = $("#uniqueTournamentId").val();
+                    var tournamentId = $("#tournamentId").val();
+
+                    window.location = getLocationUrl() +
+                        '?sportId=' +
+                        sportId +
+                        '&uniqueTournamentId=' +
+                        uniqueTournamentId +
+                        '&tournamentId=' +
+                        tournamentId +
+                        '&teamId=' +
+                        this.value;
+                });
+        });
+
+        function getLocationUrl() {
+            return window.location.href.split('?')[0];
+        }
+
+
+        $(document)
+            .ready(function() {
+                var sportId = $("#sportId").val();
+                var sportName = $("#sportId option:selected").text();
+                var uniqueTournamentId = $("#uniqueTournamentId").val();
+                var uniqueTournament = $("#uniqueTournamentId option:selected").text();
+                var tournamentId = $("#tournamentId").val();
+                var tournament = $("#tournamentId option:selected").text();
+
+                if (tournamentId) {
+                    $("#tournamentInfo")
+                        .html('<table><tr><td><table class="tablestyle">' +
+                            '<tr><td><b>Spor Id : ' +
+                            sportId +
+                            '</b></td></tr>' +
+                            '<tr><td><b>Spor : ' +
+                            sportName +
+                            '</b></td></tr>' +
+                            '</table></td><td><table class="tablestyle">' +
+                            '<tr><td><b>Tekil Lig : ' +
+                            uniqueTournament +
+                            '</b></td></tr>' +
+                            '<tr><td><b>Tekil Lig Id : ' +
+                            uniqueTournamentId +
+                            '</b></td></tr>' +
+                            '</table></td><td><table class="tablestyle">' +
+                            '<tr><td><b>Lig : ' +
+                            tournament +
+                            '</b></td></tr>' +
+                            '<tr><td><b>Lig Id : ' +
+                            tournamentId +
+                            '</b></td></tr>' +
+                            '</table></td></tr></table></br></br>'
+                        );
+                }
+
+                $('#social-networks')
+                    .click(function() {
+
+                        if(@selectedteam.Id != null){
+                            window.location
+                                .href = "http://devsportcenterweb.hurriyet.com.tr/home/teamupdate?sportId=" +
+                                sportId +
+                                "&uniqueTournamentId=" +
+                                uniqueTournamentId +
+                                "&tournamentId=" +
+                                tournamentId +
+                                    "&teamId=@selectedteam.Id";
+                        }
+                    });
+            });
+    </script>*@

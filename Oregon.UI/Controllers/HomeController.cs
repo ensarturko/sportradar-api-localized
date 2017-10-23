@@ -23,6 +23,8 @@ namespace Oregon.UI.Controllers
         {
             var result = teamProfile.GetById(1);
 
+            ViewBag.Result = result;
+
             return View();
         }
     }
