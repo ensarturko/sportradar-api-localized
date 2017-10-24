@@ -73,6 +73,21 @@
     <Compile Include="Model\TeamProfile\Team.cs" />
     <Compile Include="Model\TeamProfile\Tournament.cs" />
     <Compile Include="Model\TeamProfile\Venue.cs" />
+    <Compile Include="Model\Tournaments\BaseTournamentModel.cs" />
+    <Compile Include="Model\Tournaments\Category.cs" />
+    <Compile Include="Model\Tournaments\CurrentSeason.cs" />
+    <Compile Include="Model\Tournaments\SeasonCoverageInfo.cs" />
+    <Compile Include="Model\Tournaments\Sport.cs" />
+    <Compile Include="Model\Tournaments\TournamentDetail.cs" />
+    <Compile Include="Model\Tournaments\Tournaments.cs" />
+    <Compile Include="Model\TournamentTeams\Category.cs" />
+    <Compile Include="Model\TournamentTeams\CoverageInfo.cs" />
+    <Compile Include="Model\TournamentTeams\Group.cs" />
+    <Compile Include="Model\TournamentTeams\Round.cs" />
+    <Compile Include="Model\TournamentTeams\Season.cs" />
+    <Compile Include="Model\TournamentTeams\Team.cs" />
+    <Compile Include="Model\TournamentTeams\Tournament.cs" />
+    <Compile Include="Model\TournamentTeams\TournamentTeams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,5 +99,6 @@
       <DependentUpon>201710221426182_22-1017.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

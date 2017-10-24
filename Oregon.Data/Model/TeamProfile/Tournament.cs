@@ -15,6 +15,5 @@ namespace Oregon.Data.Model.TeamProfile
         public string TournamentId { get; set; }
         public Sport2 Sport { get; set; }
         public Category2 Category { get; set; }
-
     }
 }
