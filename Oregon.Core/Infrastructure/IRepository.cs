@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Oregon.Data.Model;
+using Oregon.Data.Model.TeamStats;
 
 namespace Oregon.Data.Infrastructure
 {
@@ -21,6 +22,8 @@ namespace Oregon.Data.Infrastructure
         void Update(T obj);
 
         TeamProfileModel GetById(int id);
+
+        TeamStats GetByStatsId(int id);
 
         int Count();
 

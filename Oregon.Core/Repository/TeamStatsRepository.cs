@@ -7,34 +7,34 @@ using System.Text;
 using System.Threading.Tasks;
 using Oregon.Core.Infrastructure;
 using Oregon.Data.DataContext;
+using Oregon.Data.Infrastructure;
 using Oregon.Data.Model;
-using Oregon.Data.Model.TeamProfile;
 using Oregon.Data.Model.TeamStats;
 
 namespace Oregon.Core.Repository
 {
-    public class TeamProfileRepository : ITeamProfileRepository
+    public class TeamStatsRepository : ITeamStatsRepository
     {
         private readonly SportContext _context = new SportContext();
 
-        public IEnumerable<TeamProfileModel> GetAll()
+        public IEnumerable<TeamStats> GetAll()
         {
-            return _context.TeamProfiles.Select(x => x);
+            return _context.TeamStats.Select(x => x);
         }
 
-        public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
+        public TeamStats Get(Expression<Func<TeamStats, bool>> expression)
         {
-            return _context.TeamProfiles.FirstOrDefault(expression);
+            return _context.TeamStats.FirstOrDefault(expression);
         }
 
-        public IQueryable<TeamProfileModel> GetMany(Expression<Func<TeamProfileModel, bool>> expression)
+        public IQueryable<TeamStats> GetMany(Expression<Func<TeamStats, bool>> expression)
         {
-            return _context.TeamProfiles.Where(expression);
+            return _context.TeamStats.Where(expression);
         }
 
-        public void Insert(TeamProfileModel obj)
+        public void Insert(TeamStats obj)
         {
-            _context.TeamProfiles.Add(obj);
+            _context.TeamStats.Add(obj);
         }
 
         public TeamProfileModel GetById(int id)
@@ -47,14 +47,19 @@ namespace Oregon.Core.Repository
             return _context.TeamStats.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(TeamProfileModel obj)
+        public void Update(TeamStats obj)
         {
-            _context.TeamProfiles.AddOrUpdate(obj);
+            _context.TeamStats.AddOrUpdate(obj);
+        }
+
+        TeamProfileModel IRepository<TeamStats>.GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public int Count()
         {
-            return _context.TeamProfiles.Count();
+            return _context.TeamStats.Count();
         }
 
         public void Save()

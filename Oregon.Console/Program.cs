@@ -48,7 +48,6 @@ namespace Oregon.Console
                             teamIdList.Add(team.id);
                         }
                     }
-
                 }
             }
 
@@ -65,7 +64,6 @@ namespace Oregon.Console
                     teamProfileRepository.Save();
                 }
             }
-
         }
     }
 }

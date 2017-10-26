@@ -52,11 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\SportContext.cs" />
-    <Compile Include="Migrations\201710221426182_22-1017.cs" />
-    <Compile Include="Migrations\201710221426182_22-1017.Designer.cs">
-      <DependentUpon>201710221426182_22-1017.cs</DependentUpon>
+    <Compile Include="Migrations\201710261618444_26-10-17.cs" />
+    <Compile Include="Migrations\201710261618444_26-10-17.Designer.cs">
+      <DependentUpon>201710261618444_26-10-17.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\TeamStats\Conceded.cs" />
+    <Compile Include="Model\TeamStats\GoaltimeStatistics.cs" />
     <Compile Include="Model\SimpleViewModel.cs" />
     <Compile Include="Model\TeamProfileModel.cs" />
     <Compile Include="Model\TeamProfile\Category.cs" />
@@ -73,6 +75,27 @@
     <Compile Include="Model\TeamProfile\Team.cs" />
     <Compile Include="Model\TeamProfile\Tournament.cs" />
     <Compile Include="Model\TeamProfile\Venue.cs" />
+    <Compile Include="Model\TeamStats.cs" />
+    <Compile Include="Model\TeamStats\BallPossession.cs" />
+    <Compile Include="Model\TeamStats\CardsGiven.cs" />
+    <Compile Include="Model\TeamStats\CornerKicks.cs" />
+    <Compile Include="Model\TeamStats\CurrentSeason.cs" />
+    <Compile Include="Model\TeamStats\FreeKicks.cs" />
+    <Compile Include="Model\TeamStats\GoalAttempts.cs" />
+    <Compile Include="Model\TeamStats\GoalsByFoot.cs" />
+    <Compile Include="Model\TeamStats\GoalsByHead.cs" />
+    <Compile Include="Model\TeamStats\GoalsConceded.cs" />
+    <Compile Include="Model\TeamStats\GoalsScored.cs" />
+    <Compile Include="Model\TeamStats\Offsides.cs" />
+    <Compile Include="Model\TeamStats\Period.cs" />
+    <Compile Include="Model\TeamStats\PlayerStatistic.cs" />
+    <Compile Include="Model\TeamStats\Scored.cs" />
+    <Compile Include="Model\TeamStats\ShotsBlocked.cs" />
+    <Compile Include="Model\TeamStats\ShotsOffGoal.cs" />
+    <Compile Include="Model\TeamStats\ShotsOnGoal.cs" />
+    <Compile Include="Model\TeamStats\SimpleStatsModel.cs" />
+    <Compile Include="Model\TeamStats\TeamSeasonCoverage.cs" />
+    <Compile Include="Model\TeamStats\TeamStatistics.cs" />
     <Compile Include="Model\Tournaments\BaseTournamentModel.cs" />
     <Compile Include="Model\Tournaments\Category.cs" />
     <Compile Include="Model\Tournaments\CurrentSeason.cs" />
@@ -95,10 +118,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710221426182_22-1017.resx">
-      <DependentUpon>201710221426182_22-1017.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710261618444_26-10-17.resx">
+      <DependentUpon>201710261618444_26-10-17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
