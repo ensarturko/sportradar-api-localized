@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oregon.Data.Model.TeamProfile;
 
 namespace Oregon.Data.Model.TeamStats
 {
@@ -24,5 +25,12 @@ namespace Oregon.Data.Model.TeamStats
         public GoalsByHead goals_by_head { get; set; }
         public GoalsScored goals_scored { get; set; }
         public GoalsConceded goals_conceded { get; set; }
+        public string TeamId { get; set; }
+
+        public TeamStatistics()
+        {
+            Team t = new Team();
+            this.TeamId = t.TeamId;
+        }
     }
 }

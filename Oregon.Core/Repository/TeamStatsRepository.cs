@@ -39,12 +39,12 @@ namespace Oregon.Core.Repository
 
         public TeamProfileModel GetById(int id)
         {
-            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").FirstOrDefault(x => x.Id == id);
+            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").Include("Jersey").Include("Player").FirstOrDefault(x => x.Id == id);
         }
 
         public TeamStats GetByStatsId(int id)
         {
-            return _context.TeamStats.FirstOrDefault(x => x.Id == id);
+            return _context.TeamStats.Include("Tournament").Include("Team").Include("TeamSeasonCoverage").Include("TeamStatistics").Include("PlayerStatistics").Include("GoaltimeStatistics").FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(TeamStats obj)

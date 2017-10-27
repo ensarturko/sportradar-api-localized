@@ -10,6 +10,7 @@ namespace Oregon.Data.Model.TeamProfile
 {
     public class Jersey : SimpleViewModel
     {
+        public string TeamId { get; set; }
         public string Type { get; set; }
         public string Base { get; set; }
         public string Sleeve { get; set; }
@@ -21,5 +22,11 @@ namespace Oregon.Data.Model.TeamProfile
         public bool Split { get; set; }
         public string Shirt_type { get; set; }
         public string Sleeve_detail { get; set; }
+
+        public Jersey()
+        {
+            Team t = new Team();
+            this.TeamId = t.TeamId;
+        }
     }
 }

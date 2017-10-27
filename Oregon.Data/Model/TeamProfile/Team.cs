@@ -18,6 +18,5 @@ namespace Oregon.Data.Model.TeamProfile
         public Sport Sport { get; set; }
         public Category Category { get; set; }
         public string Abbreviation { get; set; }
-
     }
 }

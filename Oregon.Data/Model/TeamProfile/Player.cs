@@ -21,6 +21,14 @@ namespace Oregon.Data.Model.TeamProfile
         public int Weight { get; set; }
         public int Jersey_number { get; set; }
         public string Preferred_foot { get; set; }
+        public string TeamId { get; set; }
+
+
+        public Player()
+        {
+            Team t = new Team();
+            this.TeamId = t.TeamId;
+        }
 
     }
 }
