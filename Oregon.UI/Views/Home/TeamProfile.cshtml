@@ -1,11 +1,20 @@
 ﻿@using Oregon.Data.Model
 @using Oregon.Data.Model.TeamProfile
 @{
-    var result = ViewBag.Result;
-    var teamInfo = result.Team;
-    var venueInfo = result.Venue;
-    var managerInfo = result.Manager;
-    var statistics = result.Statistics;
+    var countries = ViewBag.Countries;
+    var countrysTeams = ViewBag.CountrysTeams;
+    var exactTeamProfile = ViewBag.ExactTeamProfile;
+    Team teamInfo = null;
+    Venue venueInfo = null;
+    Manager managerInfo = null;
+    Statistics statistics = null;
+    if (exactTeamProfile != null)
+    {
+        teamInfo = exactTeamProfile.Team;
+        venueInfo = exactTeamProfile.Venue;
+        managerInfo = exactTeamProfile.Manager;
+        statistics = exactTeamProfile.Statistics;
+    }
 }
 
 <!DOCTYPE html>
@@ -25,25 +34,31 @@
     <table>
         <tr>
             <td>
-                <label>Lig</label>
-                <select class="select2" id="sportId" name="sportId"></select>
+                <label>Ülke</label>
+                <select class="select2" id="countryCode" name="countryCode">
+                    @if (countries != null)
+                    {
+                        foreach (var country in countries)
+                        {
+                            <option value="@country.Value" selected="@country.Selected">@country.Text</option>
+                        }
+                    }
+                </select>
             </td>
             <td>
-                <select id="uniqueTournamentId" name="uniqueTournamentId" style="width: 100%;"></select>
-            </td>
-            <td>
-                <select id="tournamentId" name="tournamentId" style="width: 100%;"></select>
-            </td>
-            <td>
-                <select id="teamId" name="teamId" style="width: 100%;">
-                    <option value="0">Takım Seçiniz</option>
-
+                <select class="select2" id="teamId" name="teamId">
+                    @if (countrysTeams != null)
+                    {
+                        foreach (var countryTeam in countrysTeams)
+                        {
+                            <option value="@countryTeam.Value" selected="@countryTeam.Selected">@countryTeam.Text</option>
+                        }
+                    }
                 </select>
             </td>
         </tr>
     </table>
     <br /><br />
-
 
     <div id="teamProfile">
         <div style="display: inline-block; float: left; width: 250px;">
@@ -52,30 +67,33 @@
                 <tr>
                     <td>Takım Bilgileri : </td>
                 </tr>
-                <tr>
-                    <td>Kısaltması:</td>
-                    <td>@teamInfo.Abbreviation</td>
-                </tr>
-                <tr>
-                    <td>Ülkesi:</td>
-                    <td>@teamInfo.Country</td>
-                </tr>
-                <tr>
-                    <td>Ülke Kodu:</td>
-                    <td> @teamInfo.Country_code</td>
-                </tr>
-                <tr>
-                    <td>Oregon Id:</td>
-                    <td> @teamInfo.Id</td>
-                </tr>
-                <tr>
-                    <td>İsim:</td>
-                    <td> @teamInfo.Name</td>
-                </tr>
-                <tr>
-                    <td>Sportradar Id:</td>
-                    <td> @teamInfo.TeamId</td>
-                </tr>
+                @if (teamInfo != null)
+                {
+                    <tr>
+                        <td>Kısaltması:</td>
+                        <td>@teamInfo.Abbreviation</td>
+                    </tr>
+                    <tr>
+                        <td>Ülkesi:</td>
+                        <td>@teamInfo.Country</td>
+                    </tr>
+                    <tr>
+                        <td>Ülke Kodu:</td>
+                        <td> @teamInfo.Country_code</td>
+                    </tr>
+                    <tr>
+                        <td>Oregon Id:</td>
+                        <td> @teamInfo.Id</td>
+                    </tr>
+                    <tr>
+                        <td>İsim:</td>
+                        <td> @teamInfo.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Sportradar Id:</td>
+                        <td> @teamInfo.TeamId</td>
+                    </tr>
+                }
                 </tr>
             </table>
             <table style="border:1px solid #000; padding:7px; float: left;">
@@ -83,9 +101,15 @@
                 <tr>
                     <td>Antrenör Bilgileri : </td>
                 </tr>
-                <tr>
-                    <td>Id:</td>
-                    <td>@managerInfo.ManagerId</td>
+                @if (managerInfo != null)
+                {
+                    <tr>
+                        <td>Id:</td>
+                        <td>@managerInfo.ManagerId</td>
+                    </tr>
+                    <tr>
+                        <td>Adı:</td>
+                        <td>@managerInfo.Name</td>
                     </tr>
                     <tr>
                         <td>Köken:</td>
@@ -95,17 +119,25 @@
                         <td>Ülke Kodu:</td>
                         <td> @managerInfo.Country_code</td>
                     </tr>
-                    </tr>
-                </table>
+                }
 
-                <table style="border:1px solid #000; padding:7px; float: left;">
-                    <tr>
-                    <tr>
-                        <td>Stat Bilgileri : </td>
-                    </tr>
+                </tr>
+            </table>
+
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                <tr>
+                    <td>Stat Bilgileri : </td>
+                </tr>
+                @if (venueInfo != null)
+                {
                     <tr>
                         <td>Id:</td>
                         <td>@venueInfo.VenueId</td>
+                    </tr>
+                    <tr>
+                        <td>Adı:</td>
+                        <td>@venueInfo.Name</td>
                     </tr>
                     <tr>
                         <td>Kapasitesi:</td>
@@ -127,82 +159,55 @@
                         <td>Ülke Kodu:</td>
                         <td> @venueInfo.Country_code</td>
                     </tr>
-                    </tr>
-                </table>
-                <table style="border:1px solid #000; padding:7px; float: left;">
+                }
+                </tr>
+            </table>
+            <table style="border:1px solid #000; padding:7px; float: left;">
 
-                    <tr>
-                        <td>İstatistikler: </td>
-                        <td>GELECEK</td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>İstatistikler: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
 
-                <table style="border:1px solid #000; padding:7px; float: left;">
-                    <tr>
-                        <td>Formalar: </td>
-                        <td>GELECEK</td>
-                    </tr>
-                </table>
-                <table style="border:1px solid #000; padding:7px; float: left;">
-                    <tr>
-                        <td>Oyuncular: </td>
-                        <td>GELECEK</td>
-                    </tr>
-                </table>
-            </div>
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                    <td>Formalar: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
+            <table style="border:1px solid #000; padding:7px; float: left;">
+                <tr>
+                    <td>Oyuncular: </td>
+                    <td>GELECEK</td>
+                </tr>
+            </table>
         </div>
-
-    </body>
+    </div>
+</body>
 
 </html>
-@*<script type="text/javascript">
-        $(function() {
-            $("#sportId")
-                .change(function() {
-                    window.location = getLocationUrl() + '?sportId=' + this.value;
-                });
-            $("#uniqueTournamentId")
-                .change(function() {
+<script type="text/javascript">
+    $(function () {
+        $("#countryCode")
+            .change(function () {
+                window.location = getLocationUrl() + '?countryCode=' + this.value;
+            });
 
-                    var sportId = $("#sportId").val();
+        $("#teamId")
+            .change(function () {
 
-                    window.location = getLocationUrl() + '?sportId=' + sportId + '&uniqueTournamentId=' + this.value;
-                });
-            $("#tournamentId")
-                .change(function() {
+                var countryCode = $("#countryCode").val();
 
-                    var sportId = $("#sportId").val();
-                    var uniqueTournamentId = $("#uniqueTournamentId").val();
-                    window.location = getLocationUrl() +
-                        '?sportId=' +
-                        sportId +
-                        '&uniqueTournamentId=' +
-                        uniqueTournamentId +
-                        '&tournamentId=' +
-                        this.value;
-                });
-            $("#teamId")
-                .change(function() {
-                    var sportId = $("#sportId").val();
-                    var uniqueTournamentId = $("#uniqueTournamentId").val();
-                    var tournamentId = $("#tournamentId").val();
+                window.location = getLocationUrl() + '?countryCode=' + countryCode + '&teamId=' + this.value;
+            });
+    });
 
-                    window.location = getLocationUrl() +
-                        '?sportId=' +
-                        sportId +
-                        '&uniqueTournamentId=' +
-                        uniqueTournamentId +
-                        '&tournamentId=' +
-                        tournamentId +
-                        '&teamId=' +
-                        this.value;
-                });
-        });
-
-        function getLocationUrl() {
-            return window.location.href.split('?')[0];
-        }
-
+    function getLocationUrl() {
+        return window.location.href.split('?')[0];
+    }
+</script>
+@*
 
         $(document)
             .ready(function() {

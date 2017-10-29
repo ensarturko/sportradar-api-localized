@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Oregon.Core.Infrastructure;
@@ -19,7 +20,7 @@ namespace Oregon.Core.Repository
 
         public IEnumerable<TeamProfileModel> GetAll()
         {
-            return _context.TeamProfiles.Select(x => x);
+            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").Select(x => x);
         }
 
         public TeamProfileModel Get(Expression<Func<TeamProfileModel, bool>> expression)
@@ -37,14 +38,24 @@ namespace Oregon.Core.Repository
             _context.TeamProfiles.Add(obj);
         }
 
-        public TeamProfileModel GetById(int id)
+        public TeamProfileModel GetById(int? id)
         {
             return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Category> GetCategoryInfo()
+        {
+            return _context.Categories.ToList();
         }
 
         public TeamStats GetByStatsId(int id)
         {
             return _context.TeamStats.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Team> GetAllTeams()
+        {
+            return _context.Teams.ToList();
         }
 
         public void Update(TeamProfileModel obj)

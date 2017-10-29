@@ -23,6 +23,7 @@ namespace Oregon.UI.App_Start
         private static ILifetimeScope RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<TeamProfileRepository>().As<ITeamProfileRepository>();
+            builder.RegisterType<TeamStatsRepository>().As<ITeamStatsRepository>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             return builder.Build();
