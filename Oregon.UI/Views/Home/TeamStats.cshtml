@@ -1,0 +1,51 @@
+﻿@using Oregon.Data.Model
+@using Oregon.Data.Model.TeamProfile
+@using Oregon.Data.Model.TeamStats
+@{
+    var countries = ViewBag.Countries;
+    var countrysTeams = ViewBag.CountrysTeams;
+    var exactTeamStats = ViewBag.ExactTeamStats;
+    Team team = null;
+    TeamStatistics teamStatistics = null;
+    Tournament tournament = null;
+    TeamSeasonCoverage teamSeasonCoverage = null;
+    List<PlayerStatistic> playerStatistics = null;
+    GoaltimeStatistics goaltimeStatistics = null;
+    if (exactTeamStats != null)
+    {
+        team = exactTeamStats.team;
+        teamStatistics = exactTeamStats.team_statistics;
+        tournament = exactTeamStats.tournament;
+        teamSeasonCoverage = exactTeamStats.team_season_coverage;
+        playerStatistics = exactTeamStats.player_statistics;
+        goaltimeStatistics = exactTeamStats.goaltime_statistics;
+    }
+}
+<html>
+<head>
+    <title>Takım İstatistikleri</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#countryCode")
+            .change(function () {
+                window.location = getLocationUrl() + '?countryCode=' + this.value;
+            });
+
+        $("#teamId")
+            .change(function () {
+
+                var countryCode = $("#countryCode").val();
+
+                window.location = getLocationUrl() + '?countryCode=' + countryCode + '&teamId=' + this.value;
+            });
+    });
+
+    function getLocationUrl() {
+        return window.location.href.split('?')[0];
+    }
+</script>

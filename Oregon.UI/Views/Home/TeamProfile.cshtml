@@ -8,12 +8,16 @@
     Venue venueInfo = null;
     Manager managerInfo = null;
     Statistics statistics = null;
+    List<Player> players = null;
+    List<Jersey> jerseys = null;
     if (exactTeamProfile != null)
     {
         teamInfo = exactTeamProfile.Team;
         venueInfo = exactTeamProfile.Venue;
         managerInfo = exactTeamProfile.Manager;
         statistics = exactTeamProfile.Statistics;
+        players = exactTeamProfile.Players;
+        jerseys = exactTeamProfile.Jerseys;
     }
 }
 
@@ -61,11 +65,11 @@
     <br /><br />
 
     <div id="teamProfile">
-        <div style="display: inline-block; float: left; width: 250px;">
-            <table style="border:1px solid #000; padding:7px; float: left;">
+        <div>
+            <table style="border:1px solid">
                 <tr>
                 <tr>
-                    <td>Takım Bilgileri : </td>
+                    <td><strong>Takım Bilgileri: </strong></td>
                 </tr>
                 @if (teamInfo != null)
                 {
@@ -96,10 +100,10 @@
                 }
                 </tr>
             </table>
-            <table style="border:1px solid #000; padding:7px; float: left;">
+            <table style="border:1px solid">
                 <tr>
                 <tr>
-                    <td>Antrenör Bilgileri : </td>
+                    <td><strong>Antrenör Bilgileri:</strong></td>
                 </tr>
                 @if (managerInfo != null)
                 {
@@ -124,10 +128,10 @@
                 </tr>
             </table>
 
-            <table style="border:1px solid #000; padding:7px; float: left;">
+            <table style="border:1px solid">
                 <tr>
                 <tr>
-                    <td>Stat Bilgileri : </td>
+                    <td><strong>Stat Bilgileri: </strong></td>
                 </tr>
                 @if (venueInfo != null)
                 {
@@ -161,6 +165,68 @@
                     </tr>
                 }
             </table>
+            <tr>
+                <td>
+                    <strong>
+                        Oyuncular
+                    </strong>
+                </td>
+            </tr>
+            @if (players != null)
+            {
+                foreach (var item in players)
+                {
+                    <table style="border: 1px solid">
+                        <tr>
+                            <td>Adı:</td>
+                            <td>@item.Name</td>
+                        </tr>
+
+                        <tr>
+                            <td>Doğum Tarihi:</td>
+                            <td>@item.Date_of_birth</td>
+                        </tr>
+
+                        <tr>
+                            <td>Boy:</td>
+                            <td>@item.Height</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Kilo:</td>
+                            <td>@item.Weight</td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Forma No:</td>
+                            <td>@item.Jersey_number</td>
+                        </tr>
+
+                        <tr>
+                            <td>Köken:</td>
+                            <td>@item.Nationality</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sportradar Id:</td>
+                            <td>@item.PlayerId</td>
+                        </tr>
+
+                        <tr>
+                            <td>Ayak:</td>
+                            <td>@item.Preferred_foot</td>
+                        </tr>
+
+                        <tr>
+                            <td>Mevki:</td>
+                            <td>@item.type</td>
+                        </tr>
+
+                    </table>
+                }
+            }
             <table style="border:1px solid #000; padding:7px; float: left;">
 
                 <tr>
@@ -175,12 +241,7 @@
                     <td>GELECEK</td>
                 </tr>
             </table>
-            <table style="border:1px solid #000; padding:7px; float: left;">
-                <tr>
-                    <td>Oyuncular: </td>
-                    <td>GELECEK</td>
-                </tr>
-            </table>
+
         </div>
     </div>
 </body>
@@ -206,57 +267,3 @@
         return window.location.href.split('?')[0];
     }
 </script>
-@*
-
-        $(document)
-            .ready(function() {
-                var sportId = $("#sportId").val();
-                var sportName = $("#sportId option:selected").text();
-                var uniqueTournamentId = $("#uniqueTournamentId").val();
-                var uniqueTournament = $("#uniqueTournamentId option:selected").text();
-                var tournamentId = $("#tournamentId").val();
-                var tournament = $("#tournamentId option:selected").text();
-
-                if (tournamentId) {
-                    $("#tournamentInfo")
-                        .html('<table><tr><td><table class="tablestyle">' +
-                            '<tr><td><b>Spor Id : ' +
-                            sportId +
-                            '</b></td></tr>' +
-                            '<tr><td><b>Spor : ' +
-                            sportName +
-                            '</b></td></tr>' +
-                            '</table></td><td><table class="tablestyle">' +
-                            '<tr><td><b>Tekil Lig : ' +
-                            uniqueTournament +
-                            '</b></td></tr>' +
-                            '<tr><td><b>Tekil Lig Id : ' +
-                            uniqueTournamentId +
-                            '</b></td></tr>' +
-                            '</table></td><td><table class="tablestyle">' +
-                            '<tr><td><b>Lig : ' +
-                            tournament +
-                            '</b></td></tr>' +
-                            '<tr><td><b>Lig Id : ' +
-                            tournamentId +
-                            '</b></td></tr>' +
-                            '</table></td></tr></table></br></br>'
-                        );
-                }
-
-                $('#social-networks')
-                    .click(function() {
-
-                        if(@selectedteam.Id != null){
-                            window.location
-                                .href = "http://devsportcenterweb.hurriyet.com.tr/home/teamupdate?sportId=" +
-                                sportId +
-                                "&uniqueTournamentId=" +
-                                uniqueTournamentId +
-                                "&tournamentId=" +
-                                tournamentId +
-                                    "&teamId=@selectedteam.Id";
-                        }
-                    });
-            });
-    </script>*@

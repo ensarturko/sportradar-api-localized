@@ -60,12 +60,58 @@ namespace Oregon.UI.Controllers
             int exactTeamId;
             int.TryParse(exactTeam?.Value, out exactTeamId);
             var exactTeamProfile = teamProfileRepository.GetById(exactTeamId);
-            var exactTeamStatistics = teamStatsRepository.GetByStatsId(exactTeamId);
+            //var exactTeamStatistics = teamStatsRepository.GetByStatsId(exactTeamId);
 
 
             ViewBag.Countries = countries;
             ViewBag.CountrysTeams = countrysTeams;
             ViewBag.ExactTeamProfile = exactTeamProfile;
+            return View();
+        }
+
+        public ActionResult TeamStats()
+        {
+            const int firstCategory = 1;
+            const int firstTeam = 1;
+
+            var categoryId = GetValueFromQueryString("countryCode", firstCategory);
+            var teamId = GetValueFromQueryString("teamId", firstTeam);
+
+            var categories = teamProfileRepository.GetCategoryInfo();
+
+            var selectedCategoryCode = categories.FirstOrDefault(q => q.Id == categoryId)?.Country_code;
+
+            var countries = categories.Select(item => new SelectListItem
+            {
+                Text = item.Name,
+                Value = item.Id.ToString(),
+                Selected = item.Id == categoryId
+            }).Distinct().ToList();
+
+            var allTeams = teamProfileRepository.GetAllTeams();
+            IEnumerable<Team> teams = null;
+
+            if (categoryId > 0)
+            {
+                teams = allTeams.Where(q => q.Category.Country_code == selectedCategoryCode);
+            }
+
+            var countrysTeams = teams.Select(item => new SelectListItem
+            {
+                Text = item.Name,
+                Value = item.Id.ToString(),
+                Selected = item.Id == teamId
+            }).Distinct().ToList();
+
+            var exactTeam = countrysTeams.FirstOrDefault(m => m.Value == teamId.ToString());
+            int exactTeamId;
+            int.TryParse(exactTeam?.Value, out exactTeamId);
+
+            var exactTeamStats = teamStatsRepository.GetByStatsId(exactTeamId);
+
+            ViewBag.Countries = countries;
+            ViewBag.CountrysTeams = countrysTeams;
+            ViewBag.ExactTeamStats= exactTeamStats;
             return View();
         }
 
