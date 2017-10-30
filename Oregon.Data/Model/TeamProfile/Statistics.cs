@@ -10,6 +10,6 @@ namespace Oregon.Data.Model.TeamProfile
 {
     public class Statistics : SimpleViewModel
     {
-        public List<Season> Seasons { get; set; }
+        public virtual List<Season> Seasons { get; set; }
     }
 }

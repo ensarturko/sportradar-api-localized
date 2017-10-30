@@ -15,8 +15,8 @@ namespace Oregon.Data.Model.TeamProfile
         public string TeamId { get; set; }
         public string Country { get; set; }
         public string Country_code { get; set; }
-        public Sport Sport { get; set; }
-        public Category Category { get; set; }
+        public virtual Sport Sport { get; set; }
+        public virtual Category Category { get; set; }
         public string Abbreviation { get; set; }
     }
 }

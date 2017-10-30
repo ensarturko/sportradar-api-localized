@@ -11,8 +11,8 @@ namespace Oregon.Data.Model.TeamProfile
     {
         [JsonProperty("id")]
         public string SeasonId { get; set; }
-        public Statistics2 Statistics { get; set; }
-        public Tournament Tournament { get; set; }
-        public Form Form { get; set; }
+        public virtual Statistics2 Statistics { get; set; }
+        public virtual Tournament Tournament { get; set; }
+        public virtual Form Form { get; set; }
     }
 }

@@ -12,19 +12,19 @@ namespace Oregon.Data.Model.TeamStats
         public int matches_played { get; set; }
         public int matches_won { get; set; }
         public string form { get; set; }
-        public GoalAttempts goal_attempts { get; set; }
-        public ShotsOnGoal shots_on_goal { get; set; }
-        public ShotsOffGoal shots_off_goal { get; set; }
-        public CornerKicks corner_kicks { get; set; }
-        public BallPossession ball_possession { get; set; }
-        public ShotsBlocked shots_blocked { get; set; }
-        public CardsGiven cards_given { get; set; }
-        public FreeKicks free_kicks { get; set; }
-        public Offsides offsides { get; set; }
-        public GoalsByFoot goals_by_foot { get; set; }
-        public GoalsByHead goals_by_head { get; set; }
-        public GoalsScored goals_scored { get; set; }
-        public GoalsConceded goals_conceded { get; set; }
+        public virtual GoalAttempts goal_attempts { get; set; }
+        public virtual ShotsOnGoal shots_on_goal { get; set; }
+        public virtual ShotsOffGoal shots_off_goal { get; set; }
+        public virtual CornerKicks corner_kicks { get; set; }
+        public virtual BallPossession ball_possession { get; set; }
+        public virtual ShotsBlocked shots_blocked { get; set; }
+        public virtual CardsGiven cards_given { get; set; }
+        public virtual FreeKicks free_kicks { get; set; }
+        public virtual Offsides offsides { get; set; }
+        public virtual GoalsByFoot goals_by_foot { get; set; }
+        public virtual GoalsByHead goals_by_head { get; set; }
+        public virtual GoalsScored goals_scored { get; set; }
+        public virtual GoalsConceded goals_conceded { get; set; }
         public string TeamId { get; set; }
 
         public TeamStatistics()

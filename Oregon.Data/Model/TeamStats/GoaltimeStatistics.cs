@@ -9,7 +9,7 @@ namespace Oregon.Data.Model
 {
     public class GoaltimeStatistics : SimpleViewModel
     {
-        public Scored scored { get; set; }
-        public Conceded conceded { get; set; }
+        public virtual Scored scored { get; set; }
+        public virtual Conceded conceded { get; set; }
     }
 }
