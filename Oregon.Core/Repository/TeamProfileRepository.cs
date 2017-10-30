@@ -40,7 +40,7 @@ namespace Oregon.Core.Repository
 
         public TeamProfileModel GetById(int? id)
         {
-            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").FirstOrDefault(x => x.Id == id);
+            return _context.TeamProfiles.Include("Manager").Include("Statistics").Include("Team").Include("Venue").Include("Players").Include("Jerseys").FirstOrDefault(x => x.Id == id);
         }
 
         public List<Category> GetCategoryInfo()

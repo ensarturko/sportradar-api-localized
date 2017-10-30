@@ -56,7 +56,7 @@ namespace Oregon.Core.Repository
         public TeamStats GetByStatsId(int id)
         {
             // TeamSeasonCoverage'ı silmek durumunda kaldım. TeamStatistics de PlayerStatistics de GoaltimeStatistics de
-            return _context.TeamStats.Include("Tournament").Include("Team").FirstOrDefault(x => x.Id == id);
+            return _context.TeamStats.Include("Tournament").Include("Team").Include("team_season_coverage").Include("team_statistics").Include("player_statistics").Include("goaltime_statistics").FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(TeamStats obj)
