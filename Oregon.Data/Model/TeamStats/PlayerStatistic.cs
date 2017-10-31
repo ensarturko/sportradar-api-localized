@@ -13,7 +13,9 @@ namespace Oregon.Data.Model.TeamStats
         [JsonProperty("id")]
         public string PlayerId { get; set; }
         public int matches_played { get; set; }
-        public object statistics { get; set; }
+        
+        // object will replace with List<PlayerSubStatistics> then. 
+        public virtual object statistics { get; set; }
 
         public string TeamId { get; set; }
 

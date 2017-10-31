@@ -89,6 +89,7 @@
     <Compile Include="Model\TeamStats\Offsides.cs" />
     <Compile Include="Model\TeamStats\Period.cs" />
     <Compile Include="Model\TeamStats\PlayerStatistic.cs" />
+    <Compile Include="Model\TeamStats\PlayerSubStatistics.cs" />
     <Compile Include="Model\TeamStats\Scored.cs" />
     <Compile Include="Model\TeamStats\ShotsBlocked.cs" />
     <Compile Include="Model\TeamStats\ShotsOffGoal.cs" />

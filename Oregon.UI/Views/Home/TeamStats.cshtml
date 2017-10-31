@@ -14,8 +14,8 @@
     if (exactTeamStats != null)
     {
         team = exactTeamStats.team;
-        teamStatistics = exactTeamStats.team_statistics;
         tournament = exactTeamStats.tournament;
+        teamStatistics = exactTeamStats.team_statistics;
         teamSeasonCoverage = exactTeamStats.team_season_coverage;
         playerStatistics = exactTeamStats.player_statistics;
         goaltimeStatistics = exactTeamStats.goaltime_statistics;
@@ -26,6 +26,210 @@
     <title>Takım İstatistikleri</title>
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
+    <table>
+        <tr>
+            <td>
+                <label>Ülke</label>
+                <select class="select2" id="countryCode" name="countryCode">
+                    @if (countries != null)
+                    {
+                        foreach (var country in countries)
+                        {
+                            <option value="@country.Value" selected="@country.Selected">@country.Text</option>
+                        }
+                    }
+                </select>
+            </td>
+            <td>
+                <select class="select2" id="teamId" name="teamId">
+                    @if (countrysTeams != null)
+                    {
+                        foreach (var countryTeam in countrysTeams)
+                        {
+                            <option value="@countryTeam.Value" selected="@countryTeam.Selected">@countryTeam.Text</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br /><br />
+
+    <div id="teamStats">
+        <div>
+             <tr>
+                <td>
+                    <strong>
+                        Takım Bilgileri
+                    </strong>
+                </td>
+            </tr>
+            <table style="border: 1px solid">
+                <tr>
+                    @if (team != null)
+                    {
+                        <tr>
+                            <td>Kısaltması:</td>
+                            <td>@team.Abbreviation</td>
+                        </tr>
+                        <tr>
+                            <td>Ülkesi:</td>
+                            <td>@team.Country</td>
+                        </tr>
+                        <tr>
+                            <td>Ülke Kodu:</td>
+                            <td> @team.Country_code</td>
+                        </tr>
+                        <tr>
+                            <td>Oregon Id:</td>
+                            <td> @team.Id</td>
+                        </tr>
+                        <tr>
+                            <td>İsim:</td>
+                            <td> @team.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Sportradar Id:</td>
+                            <td> @team.TeamId</td>
+                        </tr>
+                    }
+                </tr>
+            </table>
+
+            <tr>
+                <td>
+                    <strong>
+                        Turnuva Bilgileri
+                    </strong>
+                </td>
+            </tr>
+            <table style="border: 1px solid">
+                <tr>
+                    @if (tournament != null)
+                    {
+                        <tr>
+                            <td>Id:</td>
+                            <td>@tournament.Id</td>
+                        </tr>
+                        <tr>
+                            <td>Ülkesi:</td>
+                            <td>@tournament.Name</td>
+                        </tr>
+                    }
+                </tr>
+            </table>
+
+            <tr>
+                <td>
+                    <strong>
+                        Takım İstatistikleri
+                    </strong>
+                </td>
+            </tr>
+            <br/>
+
+            <table style="border: 1px solid">
+                <tr>
+                    @if (teamStatistics != null)
+                    {
+                        <tr>
+                            <td>Oynanan/Kazanılan:</td>
+                            <td>@teamStatistics.matches_played / @teamStatistics.matches_won</td>
+                        </tr>
+                        <tr>
+                            <td>Topa Sahip Olma/Maç:</td>
+                            <td>@teamStatistics.ball_possession.total / @teamStatistics.ball_possession.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Kart Sayısı/Maç:</td>
+                            <td>@teamStatistics.cards_given.total / @teamStatistics.cards_given.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Korner Sayısı/Maç:</td>
+                            <td>@teamStatistics.corner_kicks.total / @teamStatistics.corner_kicks.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Frikik Sayısı/Maç:</td>
+                            <td>@teamStatistics.free_kicks.total / @teamStatistics.free_kicks.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Gol Girişimi/Maç:</td>
+                            <td>@teamStatistics.goal_attempts.total / @teamStatistics.goal_attempts.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Ayakla Atılan Gol/Maç:</td>
+                            <td>@teamStatistics.goals_by_foot.total / @teamStatistics.goals_by_foot.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Kafayla Atılan Gol/Maç:</td>
+                            <td>@teamStatistics.goals_by_head.total / @teamStatistics.goals_by_head.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Yenilen Gol/Maç:</td>
+                            <td>@teamStatistics.goals_conceded.total / @teamStatistics.goals_conceded.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Atılan Gol/Maç:</td>
+                            <td>@teamStatistics.goals_scored.total / @teamStatistics.goals_scored.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Ofsaytlar/Maç:</td>
+                            <td>@teamStatistics.offsides.total / @teamStatistics.offsides.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Engellenen Şutlar/Maç:</td>
+                            <td>@teamStatistics.shots_blocked.total / @teamStatistics.shots_blocked.matches </td>
+                        </tr>
+                        <tr>
+                            <td>İsabetsiz Şutlar/Maç:</td>
+                            <td>@teamStatistics.shots_off_goal.total / @teamStatistics.shots_off_goal.matches </td>
+                        </tr>
+                        <tr>
+                            <td>İsabetli Şutlar/Maç:</td>
+                            <td>@teamStatistics.shots_on_goal.total / @teamStatistics.shots_on_goal.matches </td>
+                        </tr>
+                        <tr>
+                            <td>Kazanılan Maç/Oynanan Maç:</td>
+                            <td>@teamStatistics.matches_won/ @teamStatistics.matches_played</td>
+                        </tr>
+                    }
+                </tr>
+            </table>
+
+            <tr>
+                <td>
+                    <strong>
+                        Oyuncu İstatistikleri
+                    </strong>
+                </td>
+            </tr>
+            @if (playerStatistics != null)
+            {
+                foreach (var item in playerStatistics)
+                {
+                    <table style="border: 1px solid">
+                        <tr>
+                            <td>Adı:</td>
+                            <td>@item.Name</td>
+                        </tr>
+
+                        <tr>
+                            <td>Player Id:</td>
+                            <td>@item.PlayerId</td>
+                        </tr>
+
+                        <tr>
+                            <td>Oynadığı Maç Sayısı:</td>
+                            <td>@item.matches_played</td>
+                        </tr>
+
+                    </table>
+                }
+            }
+        </div>
+    </div>
 
 </body>
 </html>
